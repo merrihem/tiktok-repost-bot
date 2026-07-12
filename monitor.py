@@ -4,6 +4,7 @@ Belirli bir kullanıcının Reposts sekmesini kontrol eder; yeni repost varsa Te
 Orijinal video URL'si kaydedilir — repost kaldırılsa bile video izlenebilir.
 """
 
+import os
 import json
 import random
 import re
@@ -17,10 +18,10 @@ from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
 from playwright.sync_api import sync_playwright
 from playwright_stealth import Stealth
 
-# --- Yapılandırma (doldurun) ---
-TELEGRAM_BOT_TOKEN = "8874316940:AAFq5wxTrjYVD1906qS5H2PGepuGcVBWmkM"
-TELEGRAM_CHAT_ID = "1471306764"
-TIKTOK_USERNAME = "nazzviia"  # @ işareti olmadan
+# --- Yapılandırma (Şifreler GitHub Secrets kasasından çekilir) ---
+TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
+TIKTOK_USERNAME = os.environ.get("TIKTOK_USERNAME", "")
 
 # --- Genel ayarlar ---
 HEADLESS = True
